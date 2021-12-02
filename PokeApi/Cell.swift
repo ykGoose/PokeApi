@@ -21,11 +21,13 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     func configure(with pokemon: Species?) {
         pokemonNameLabel.text = pokemon?.pokemon_species?.name?.capitalized
-        let imageURL = "\(URLsEnumeration.image.rawValue)\(pokemon?.entry_number ?? 1).svg"
-        print()
+        guard var pokeNumber = pokemon?.pokemon_species?.url?.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
+        pokeNumber.removeLast()
+        print("\(pokemonNameLabel.text ?? "noname") - \(pokeNumber)")
         
+        let imageURL = "\(URLsEnumeration.image.rawValue)\(pokeNumber).svg"
         
-        guard let url = URL(string: imageURL) else { return }
+        guard let url = URL(string: imageURL) else { return self.pokemonImageView.image = .strokedCheckmark}
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 print(error)

@@ -5,10 +5,18 @@ import UIKit
 class PokemonCollectionViewController: UICollectionViewController {
     
     private var pokemonList: Pokemon?
+    private var pokedexList: [Pokedex] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkManager.shared.fetchPokedex { pokemon in
+        NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi1.rawValue) { pokedex in
+            self.pokedexList += pokedex
+        }
+        NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi2.rawValue) { pokedex in
+            self.pokedexList += pokedex
+            print(self.pokedexList.count)
+        }
+        NetworkManager.shared.fetchPokemon(url: URLsEnumeration.nationalApi.rawValue) { pokemon in
             self.pokemonList = pokemon
             self.navigationItem.title = self.pokemonList?.name?.capitalized
             self.collectionView.reloadData()
@@ -93,9 +101,14 @@ extension PokemonCollectionViewController {
     }
     
     private func addActions(alerts: UIAlertController) {
-        let actiona = ["cat", "dog", "mouse"]
-        for action in actiona {
-            let alertAction = UIAlertAction(title: action, style: .default)
+        for pokedex in pokedexList {
+            let alertAction = UIAlertAction(title: pokedex.name, style: .default) { _ in
+                NetworkManager.shared.fetchPokemon(url: pokedex.url) { pokemon in
+                    self.pokemonList = pokemon
+                    self.navigationItem.title = self.pokemonList?.name?.capitalized
+                    self.collectionView.reloadData()
+                }
+            }
             alerts.addAction(alertAction)
         }
     }

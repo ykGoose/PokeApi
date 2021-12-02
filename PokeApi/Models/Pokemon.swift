@@ -10,10 +10,13 @@ struct Species: Decodable {
     
     let entry_number: Int?
     let pokemon_species: Name?
+    
 }
 
 struct Name: Decodable {
     let name: String?
+    let url: String?
+    
 }
 
 
@@ -21,5 +24,7 @@ struct Name: Decodable {
 enum URLsEnumeration: String {
     case image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" // no.svg
     case nationalApi = "https://pokeapi.co/api/v2/pokedex/1/"
-    case pokedexListApi = "https://pokeapi.co/api/v2/pokedex/"
+    case pokedexListApi1 = "https://pokeapi.co/api/v2/pokedex/"
+    case pokedexListApi2 = "https://pokeapi.co/api/v2/pokedex/?offset=20&limit=8"
 }
+

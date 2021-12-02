@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		966B59292758609C00531161 /* extraction Func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B59282758609C00531161 /* extraction Func.swift */; };
+		966B592B2758733A00531161 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966B592A2758733A00531161 /* Region.swift */; };
 		967922B927564EB100BEA744 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922B827564EB100BEA744 /* AppDelegate.swift */; };
 		967922BB27564EB100BEA744 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922BA27564EB100BEA744 /* SceneDelegate.swift */; };
 		967922C027564EB100BEA744 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967922BE27564EB100BEA744 /* Main.storyboard */; };
@@ -14,13 +16,15 @@
 		967922C527564EB500BEA744 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967922C327564EB500BEA744 /* LaunchScreen.storyboard */; };
 		967922CE2756510300BEA744 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922CD2756510300BEA744 /* Pokemon.swift */; };
 		967922D02756606900BEA744 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922CF2756606900BEA744 /* NetworkManager.swift */; };
-		967922D22756640E00BEA744 /* PokemonCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D12756640E00BEA744 /* PokemonCollectionViewController.swift */; };
-		967922D42756646300BEA744 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D32756646300BEA744 /* PokemonCollectionViewCell.swift */; };
+		967922D22756640E00BEA744 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D12756640E00BEA744 /* CollectionView.swift */; };
+		967922D42756646300BEA744 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D32756646300BEA744 /* Cell.swift */; };
 		D6C90AD382B9F9815847946E /* Pods_PokeApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A0B0B0C41D4F1FACC880E3 /* Pods_PokeApi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		89A0B0B0C41D4F1FACC880E3 /* Pods_PokeApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokeApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		966B59282758609C00531161 /* extraction Func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extraction Func.swift"; sourceTree = "<group>"; };
+		966B592A2758733A00531161 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		967922B527564EB100BEA744 /* PokeApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967922B827564EB100BEA744 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		967922BA27564EB100BEA744 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,8 +34,8 @@
 		967922C627564EB500BEA744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967922CD2756510300BEA744 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		967922CF2756606900BEA744 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		967922D12756640E00BEA744 /* PokemonCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewController.swift; sourceTree = "<group>"; };
-		967922D32756646300BEA744 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		967922D12756640E00BEA744 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		967922D32756646300BEA744 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		BB1F974CF71BDB4C5CC50E9D /* Pods-PokeApi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeApi.release.xcconfig"; path = "Target Support Files/Pods-PokeApi/Pods-PokeApi.release.xcconfig"; sourceTree = "<group>"; };
 		DE076FD0494349484F479794 /* Pods-PokeApi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeApi.debug.xcconfig"; path = "Target Support Files/Pods-PokeApi/Pods-PokeApi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,8 +66,16 @@
 				DE076FD0494349484F479794 /* Pods-PokeApi.debug.xcconfig */,
 				BB1F974CF71BDB4C5CC50E9D /* Pods-PokeApi.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		966B592C2758734400531161 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				967922CD2756510300BEA744 /* Pokemon.swift */,
+				966B592A2758733A00531161 /* Region.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		967922AC27564EB100BEA744 = {
@@ -89,10 +101,10 @@
 			children = (
 				967922CC27564ED200BEA744 /* Supporting Files */,
 				967922BE27564EB100BEA744 /* Main.storyboard */,
-				967922CD2756510300BEA744 /* Pokemon.swift */,
+				966B592C2758734400531161 /* Models */,
 				967922CF2756606900BEA744 /* NetworkManager.swift */,
-				967922D12756640E00BEA744 /* PokemonCollectionViewController.swift */,
-				967922D32756646300BEA744 /* PokemonCollectionViewCell.swift */,
+				967922D12756640E00BEA744 /* CollectionView.swift */,
+				967922D32756646300BEA744 /* Cell.swift */,
 			);
 			path = PokeApi;
 			sourceTree = "<group>";
@@ -105,6 +117,7 @@
 				967922C127564EB500BEA744 /* Assets.xcassets */,
 				967922C327564EB500BEA744 /* LaunchScreen.storyboard */,
 				967922C627564EB500BEA744 /* Info.plist */,
+				966B59282758609C00531161 /* extraction Func.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -226,9 +239,11 @@
 			files = (
 				967922B927564EB100BEA744 /* AppDelegate.swift in Sources */,
 				967922D02756606900BEA744 /* NetworkManager.swift in Sources */,
-				967922D22756640E00BEA744 /* PokemonCollectionViewController.swift in Sources */,
+				966B59292758609C00531161 /* extraction Func.swift in Sources */,
+				966B592B2758733A00531161 /* Region.swift in Sources */,
+				967922D22756640E00BEA744 /* CollectionView.swift in Sources */,
 				967922BB27564EB100BEA744 /* SceneDelegate.swift in Sources */,
-				967922D42756646300BEA744 /* PokemonCollectionViewCell.swift in Sources */,
+				967922D42756646300BEA744 /* Cell.swift in Sources */,
 				967922CE2756510300BEA744 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,7 +393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3B53AU5N2F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokeApi/Supporting Files/Info.plist";
@@ -391,7 +406,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.PokeApi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -407,7 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3B53AU5N2F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokeApi/Supporting Files/Info.plist";
@@ -420,7 +435,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = swiftbook.PokeApi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

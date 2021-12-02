@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 class NetworkManager {
     
@@ -7,7 +6,7 @@ class NetworkManager {
     private init() {}
     
     func fetchPokedex(complition: @escaping (Pokemon) -> Void) {
-        guard let url = URL(string: URLsEnumeration.kantoApi.rawValue) else { return }
+        guard let url = URL(string: URLsEnumeration.nationalApi.rawValue) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {

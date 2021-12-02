@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--pokeload-->
+        <!--Title-->
         <scene sceneID="6P9-RA-Vd6">
             <objects>
                 <collectionViewController id="FXb-Re-gCH" customClass="PokemonCollectionViewController" customModule="PokeApi" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +60,13 @@
                             <outlet property="delegate" destination="FXb-Re-gCH" id="fD0-p2-VmP"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="pokeload" id="TWi-Gb-sGh"/>
+                    <navigationItem key="navigationItem" title="Title" id="ccl-Kc-Teu">
+                        <barButtonItem key="rightBarButtonItem" title="region" id="dvO-bB-F1j">
+                            <connections>
+                                <action selector="regionChanging:" destination="FXb-Re-gCH" id="Xmd-ww-VJN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Fh-td-Ixf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

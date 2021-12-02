@@ -20,7 +20,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     
     func configure(with pokemon: Species?) {
-        pokemonNameLabel.text = pokemon?.pokemon_species?.name
+        pokemonNameLabel.text = pokemon?.pokemon_species?.name?.capitalized
         let imageURL = "\(URLsEnumeration.image.rawValue)\(pokemon?.entry_number ?? 1).svg"
         print()
         

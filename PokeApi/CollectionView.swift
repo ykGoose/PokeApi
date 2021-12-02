@@ -8,12 +8,11 @@ class PokemonCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         NetworkManager.shared.fetchPokedex { pokemon in
             self.pokemonList = pokemon
+            self.navigationItem.title = self.pokemonList?.name?.capitalized
             self.collectionView.reloadData()
         }
-
     }
 
     
@@ -28,13 +27,13 @@ class PokemonCollectionViewController: UICollectionViewController {
     }
     */
 
-    // MARK: UICollectionViewDataSource
-
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//10
-//    }
-
+    // MARK: - IB Actions
+    
+    @IBAction func regionChanging(_ sender: UIBarButtonItem) {
+        showAlert()
+        
+    }
+    
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         pokemonList?.pokemon_entries?.count ?? 10
@@ -51,12 +50,7 @@ class PokemonCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+
 
     /*
     // Uncomment this method to specify if the specified item should be selected
@@ -81,10 +75,28 @@ class PokemonCollectionViewController: UICollectionViewController {
     */
 
 }
-
+// MARK: - Extension Delegate
 extension PokemonCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = UIScreen.main.bounds.width / 3
         return CGSize(width: size, height: size)
+    }
+}
+
+// MARK: - Extension
+extension PokemonCollectionViewController {
+    private func showAlert() {
+    let alert = UIAlertController(title: "Choose region", message: "", preferredStyle: .actionSheet)
+        addActions(alerts: alert)
+        
+        present(alert, animated: true)
+    }
+    
+    private func addActions(alerts: UIAlertController) {
+        let actiona = ["cat", "dog", "mouse"]
+        for action in actiona {
+            let alertAction = UIAlertAction(title: action, style: .default)
+            alerts.addAction(alertAction)
+        }
     }
 }

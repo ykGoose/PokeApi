@@ -1,4 +1,3 @@
-import Foundation
 
 struct Pokemon: Decodable {
     
@@ -21,5 +20,6 @@ struct Name: Decodable {
 
 enum URLsEnumeration: String {
     case image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" // no.svg
-    case kantoApi = "https://pokeapi.co/api/v2/pokedex/2/"
+    case nationalApi = "https://pokeapi.co/api/v2/pokedex/1/"
+    case pokedexListApi = "https://pokeapi.co/api/v2/pokedex/"
 }

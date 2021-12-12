@@ -5,10 +5,20 @@ import UIKit
 class PokemonCollectionViewController: UICollectionViewController {
     
     private var pokemonList: Pokemon?
+    private var searchedPokemons: [Species] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = navigationItem.searchController?.searchBar.text else { return false }
+        return text.isEmpty
+    }
     private var pokedexList: [Pokedex] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController()
+        
+        navigationController?.navigationBar.backgroundColor = .white
+        
         NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi1.rawValue) { pokedex in
             self.pokedexList += pokedex
         }
@@ -18,9 +28,10 @@ class PokemonCollectionViewController: UICollectionViewController {
         }
         NetworkManager.shared.fetchPokemon(url: URLsEnumeration.nationalApi.rawValue) { pokemon in
             self.pokemonList = pokemon
-            self.navigationItem.title = self.pokemonList?.name?.capitalized
+            self.navigationItem.title = self.pokemonList?.name.capitalized
             self.collectionView.reloadData()
         }
+  
     }
 
     
@@ -44,12 +55,12 @@ class PokemonCollectionViewController: UICollectionViewController {
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pokemonList?.pokemon_entries?.count ?? 10
+        searchBarIsEmpty ? pokemonList?.pokemon_entries.count ?? 1 : searchedPokemons.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
-        let pokemon = pokemonList?.pokemon_entries?[indexPath.row]
+        let pokemon = searchBarIsEmpty ? pokemonList?.pokemon_entries[indexPath.row] : searchedPokemons[indexPath.row]
         cell.configure(with: pokemon)
         
     
@@ -105,11 +116,49 @@ extension PokemonCollectionViewController {
             let alertAction = UIAlertAction(title: pokedex.name, style: .default) { _ in
                 NetworkManager.shared.fetchPokemon(url: pokedex.url) { pokemon in
                     self.pokemonList = pokemon
-                    self.navigationItem.title = self.pokemonList?.name?.capitalized
+                    self.navigationItem.title = self.pokemonList?.name.capitalized
                     self.collectionView.reloadData()
                 }
             }
             alerts.addAction(alertAction)
         }
     }
+    
 }
+
+extension PokemonCollectionViewController: UISearchBarDelegate {
+    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        pokemonList?.name?.filter({ <#Character#> in
+//            <#code#>
+//        })
+//    }
+    
+    private func searchController () {
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+    }
+    
+}
+
+extension PokemonCollectionViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        print(searchedPokemons)
+    }
+    
+    private func filterContentForSearchText(searchText: String) {
+        searchedPokemons = pokemonList?.pokemon_entries.filter({ species in
+            species.pokemon_species.name.lowercased().contains(searchText.lowercased())
+        }) ?? []
+        collectionView.reloadData()
+    }
+}
+
+    
+    

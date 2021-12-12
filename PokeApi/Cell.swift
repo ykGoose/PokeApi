@@ -20,8 +20,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     
     func configure(with pokemon: Species?) {
-        pokemonNameLabel.text = pokemon?.pokemon_species?.name?.capitalized
-        guard var pokeNumber = pokemon?.pokemon_species?.url?.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
+        pokemonNameLabel.text = pokemon?.pokemon_species.name.capitalized
+        guard var pokeNumber = pokemon?.pokemon_species.url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
         pokeNumber.removeLast()
         print("\(pokemonNameLabel.text ?? "noname") - \(pokeNumber)")
         

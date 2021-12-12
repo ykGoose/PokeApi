@@ -1,21 +1,21 @@
 
 struct Pokemon: Decodable {
     
-    let pokemon_entries: [Species]?
-    let name: String?
+    let pokemon_entries: [Species]
+    let name: String
     
 }
 
 struct Species: Decodable {
     
-    let entry_number: Int?
-    let pokemon_species: Name?
+    let entry_number: Int
+    let pokemon_species: Name
     
 }
 
 struct Name: Decodable {
-    let name: String?
-    let url: String?
+    let name: String
+    let url: String
     
 }
 

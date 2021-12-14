@@ -14,13 +14,20 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var pokemonNameLabel: UILabel!
     
+    @IBOutlet var fetchingActivityIndicatorView: UIActivityIndicatorView!
+    
     
 
     
     
     
     func configure(with pokemon: Species?) {
+        fetchingActivityIndicatorView.hidesWhenStopped = true
+        fetchingActivityIndicatorView.startAnimating()
+        
         pokemonNameLabel.text = pokemon?.pokemon_species.name.capitalized
+      //  pokemonNameLabel.textColor = UIColor.sys
+        
         guard var pokeNumber = pokemon?.pokemon_species.url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
         pokeNumber.removeLast()
         print("\(pokemonNameLabel.text ?? "noname") - \(pokeNumber)")
@@ -35,6 +42,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
             }
             if let data = data, let image = SVGKImage(data: data) {
                 DispatchQueue.main.async {
+                    self.fetchingActivityIndicatorView.stopAnimating()
                     self.pokemonImageView.image = image.uiImage
                 }
             }

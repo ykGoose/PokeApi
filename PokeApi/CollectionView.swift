@@ -13,11 +13,12 @@ class PokemonCollectionViewController: UICollectionViewController {
     private var pokedexList: [Pokedex] = []
 
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
         searchController()
-        
-        navigationController?.navigationBar.backgroundColor = .white
+//        titleColorConfiguration(color: .systemTeal)
         
         NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi1.rawValue) { pokedex in
             self.pokedexList += pokedex
@@ -98,7 +99,7 @@ class PokemonCollectionViewController: UICollectionViewController {
 extension PokemonCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = UIScreen.main.bounds.width / 3
-        return CGSize(width: size, height: size)
+        return CGSize(width: size, height: size + 30)
     }
 }
 
@@ -160,5 +161,12 @@ extension PokemonCollectionViewController: UISearchResultsUpdating {
     }
 }
 
-    
-    
+//extension PokemonCollectionViewController {
+//    func titleColorConfiguration(color: UIColor) {
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = color
+//        navigationItem.standardAppearance = appearance
+//        navigationItem.scrollEdgeAppearance = appearance
+//    }
+//}

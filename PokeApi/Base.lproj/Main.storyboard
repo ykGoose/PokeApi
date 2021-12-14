@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m6X-dJ-euZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m6X-dJ-euZ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +15,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dhK-MB-h0l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="AccentColor"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hnz-FJ-ULg">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,27 +30,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="La0-uM-wxN">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="La0-uM-wxN">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="98"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-FF-D6o">
                                             <rect key="frame" x="0.0" y="103" width="128" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="7r5-h3-zYn"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="highlightedColor"/>
+                                            <color key="shadowColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                         </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gto-uV-sN7">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="103"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="La0-uM-wxN" secondAttribute="trailing" id="31R-t9-aS1"/>
+                                        <constraint firstItem="gto-uV-sN7" firstAttribute="top" secondItem="Zo5-sG-IpK" secondAttribute="top" id="70l-b3-gbv"/>
                                         <constraint firstAttribute="trailing" secondItem="s3o-FF-D6o" secondAttribute="trailing" id="Nn4-V0-UhS"/>
+                                        <constraint firstItem="s3o-FF-D6o" firstAttribute="top" secondItem="gto-uV-sN7" secondAttribute="bottom" id="UQA-Cd-Pik"/>
+                                        <constraint firstAttribute="trailing" secondItem="gto-uV-sN7" secondAttribute="trailing" id="VCe-im-NWH"/>
+                                        <constraint firstAttribute="bottom" secondItem="La0-uM-wxN" secondAttribute="bottom" constant="30" id="XeN-Sh-8NK"/>
+                                        <constraint firstItem="La0-uM-wxN" firstAttribute="leading" secondItem="Zo5-sG-IpK" secondAttribute="leading" id="cWn-Xn-tnp"/>
+                                        <constraint firstItem="gto-uV-sN7" firstAttribute="leading" secondItem="Zo5-sG-IpK" secondAttribute="leading" id="cmL-Dr-9RO"/>
                                         <constraint firstItem="s3o-FF-D6o" firstAttribute="leading" secondItem="Zo5-sG-IpK" secondAttribute="leading" id="exg-hu-Shn"/>
                                         <constraint firstAttribute="bottom" secondItem="s3o-FF-D6o" secondAttribute="bottom" id="gt6-aM-f6s"/>
+                                        <constraint firstItem="La0-uM-wxN" firstAttribute="top" secondItem="Zo5-sG-IpK" secondAttribute="top" id="mTe-lX-Vzl"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
+                                    <outlet property="fetchingActivityIndicatorView" destination="gto-uV-sN7" id="cdh-P4-lu6"/>
                                     <outlet property="pokemonImageView" destination="La0-uM-wxN" id="PKe-hA-M63"/>
                                     <outlet property="pokemonNameLabel" destination="s3o-FF-D6o" id="esX-d9-6nV"/>
                                 </connections>
@@ -62,7 +72,7 @@
                             <outlet property="delegate" destination="FXb-Re-gCH" id="fD0-p2-VmP"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Title" id="ccl-Kc-Teu">
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="ccl-Kc-Teu">
                         <barButtonItem key="rightBarButtonItem" title="region" id="dvO-bB-F1j">
                             <connections>
                                 <action selector="regionChanging:" destination="FXb-Re-gCH" id="Xmd-ww-VJN"/>
@@ -78,16 +88,12 @@
         <scene sceneID="xvh-oa-zfP">
             <objects>
                 <navigationController id="m6X-dJ-euZ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rZc-0u-3L1">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rZc-0u-3L1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" systemColor="systemGreenColor"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="systemPinkColor"/>
-                        </textAttributes>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <connections>
                         <segue destination="FXb-Re-gCH" kind="relationship" relationship="rootViewController" id="6SC-3d-GHv"/>
@@ -99,17 +105,14 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

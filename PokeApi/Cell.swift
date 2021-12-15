@@ -25,10 +25,10 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         fetchingActivityIndicatorView.hidesWhenStopped = true
         fetchingActivityIndicatorView.startAnimating()
         
-        pokemonNameLabel.text = pokemon?.pokemon_species.name.capitalized
+        pokemonNameLabel.text = pokemon?.pokemonSpecies.name.capitalized
       //  pokemonNameLabel.textColor = UIColor.sys
         
-        guard var pokeNumber = pokemon?.pokemon_species.url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
+        guard var pokeNumber = pokemon?.pokemonSpecies.url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
         pokeNumber.removeLast()
         print("\(pokemonNameLabel.text ?? "noname") - \(pokeNumber)")
         

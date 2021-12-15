@@ -16,7 +16,9 @@ class NetworkManager {
             guard let data = data else { return }
             
             do {
-                let pokedexResult = try JSONDecoder().decode(PokedexResult.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let pokedexResult = try decoder.decode(PokedexResult.self, from: data)
                 DispatchQueue.main.async {
                     pokeList = pokedexResult.results
                     complition(pokeList)
@@ -40,7 +42,9 @@ class NetworkManager {
             guard let data = data else { return }
             
             do {
-                let pokemons = try JSONDecoder().decode(Pokemon.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let pokemons = try decoder.decode(Pokemon.self, from: data)
                 DispatchQueue.main.async {
                     complition(pokemons)
                 }

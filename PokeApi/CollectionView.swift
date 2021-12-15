@@ -56,12 +56,12 @@ class PokemonCollectionViewController: UICollectionViewController {
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        searchBarIsEmpty ? pokemonList?.pokemon_entries.count ?? 1 : searchedPokemons.count
+        searchBarIsEmpty ? pokemonList?.pokemonEntries.count ?? 1 : searchedPokemons.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
-        let pokemon = searchBarIsEmpty ? pokemonList?.pokemon_entries[indexPath.row] : searchedPokemons[indexPath.row]
+        let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.row] : searchedPokemons[indexPath.row]
         cell.configure(with: pokemon)
         
     
@@ -104,6 +104,12 @@ extension PokemonCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - Extension
+
+
+
+
+
+// MARK: AlertController
 extension PokemonCollectionViewController {
     private func showAlert() {
     let alert = UIAlertController(title: "Choose region", message: "", preferredStyle: .actionSheet)
@@ -114,10 +120,11 @@ extension PokemonCollectionViewController {
     
     private func addActions(alerts: UIAlertController) {
         for pokedex in pokedexList {
-            let alertAction = UIAlertAction(title: pokedex.name, style: .default) { _ in
+            let alertAction = UIAlertAction(title: pokedex.name.replacingOccurrences(of: "-", with: " ").capitalized, style: .default) { _ in
                 NetworkManager.shared.fetchPokemon(url: pokedex.url) { pokemon in
                     self.pokemonList = pokemon
                     self.navigationItem.title = self.pokemonList?.name.capitalized
+                        .replacingOccurrences(of: "-", with: " ")
                     self.collectionView.reloadData()
                 }
             }
@@ -127,6 +134,8 @@ extension PokemonCollectionViewController {
     
 }
 
+
+ // MARK: SearchController
 extension PokemonCollectionViewController: UISearchBarDelegate {
     
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -154,8 +163,8 @@ extension PokemonCollectionViewController: UISearchResultsUpdating {
     }
     
     private func filterContentForSearchText(searchText: String) {
-        searchedPokemons = pokemonList?.pokemon_entries.filter({ species in
-            species.pokemon_species.name.lowercased().contains(searchText.lowercased())
+        searchedPokemons = pokemonList?.pokemonEntries.filter({ species in
+            species.pokemonSpecies.name.lowercased().contains(searchText.lowercased())
         }) ?? []
         collectionView.reloadData()
     }

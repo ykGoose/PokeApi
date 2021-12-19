@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -64,6 +65,7 @@
                                     <outlet property="fetchingActivityIndicatorView" destination="gto-uV-sN7" id="cdh-P4-lu6"/>
                                     <outlet property="pokemonImageView" destination="La0-uM-wxN" id="PKe-hA-M63"/>
                                     <outlet property="pokemonNameLabel" destination="s3o-FF-D6o" id="esX-d9-6nV"/>
+                                    <segue destination="vFs-yK-kiy" kind="presentation" id="vhU-GZ-0uS"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -73,16 +75,89 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="ccl-Kc-Teu">
-                        <barButtonItem key="rightBarButtonItem" title="region" id="dvO-bB-F1j">
-                            <connections>
-                                <action selector="regionChanging:" destination="FXb-Re-gCH" id="Xmd-ww-VJN"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="star.fill" catalog="system" id="ND2-lz-Jws">
+                                <connections>
+                                    <segue destination="a4s-cE-Dk9" kind="show" id="TMN-f9-HcO"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="region" id="dvO-bB-F1j">
+                                <connections>
+                                    <action selector="regionChanging:" destination="FXb-Re-gCH" id="Xmd-ww-VJN"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Fh-td-Ixf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="327.536231884058" y="-364.28571428571428"/>
+        </scene>
+        <!--Favorite Table View Controller-->
+        <scene sceneID="hID-gb-pKG">
+            <objects>
+                <tableViewController id="a4s-cE-Dk9" customClass="FavoriteTableViewController" customModule="PokeApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="o6j-OO-FsH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Gmz-5G-UG7">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gmz-5G-UG7" id="A2N-gB-hCQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vFs-yK-kiy" kind="show" id="qps-ef-ncu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a4s-cE-Dk9" id="eUP-fp-i7b"/>
+                            <outlet property="delegate" destination="a4s-cE-Dk9" id="oHT-C3-4mD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ewc-dD-ggn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fxr-D4-7PZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1095" y="-599"/>
+        </scene>
+        <!--Info View Controller-->
+        <scene sceneID="usn-vc-PNx">
+            <objects>
+                <viewController id="FP9-Ug-lz2" customClass="InfoViewController" customModule="PokeApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q1V-UR-ABm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUD-mJ-JpI">
+                                <rect key="frame" x="16" y="72" width="382" height="382"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HUD-mJ-JpI" secondAttribute="height" multiplier="1:1" id="X12-L4-afm"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U98-bb-b2H"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U98-bb-b2H" firstAttribute="trailing" secondItem="HUD-mJ-JpI" secondAttribute="trailing" constant="16" id="8pL-EO-HOs"/>
+                            <constraint firstItem="HUD-mJ-JpI" firstAttribute="top" secondItem="U98-bb-b2H" secondAttribute="top" constant="16" id="Akv-ca-AGu"/>
+                            <constraint firstItem="HUD-mJ-JpI" firstAttribute="leading" secondItem="U98-bb-b2H" secondAttribute="leading" constant="16" id="bBH-tz-P4d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DuA-Er-TnG">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="zC4-4c-ab5"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="pokemonImageView" destination="HUD-mJ-JpI" id="6cK-gi-1Zn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X89-k7-3j8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002.8985507246377" y="118.52678571428571"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xvh-oa-zfP">
@@ -103,9 +178,36 @@
             </objects>
             <point key="canvasLocation" x="-550" y="-363"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Eya-GQ-BbM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vFs-yK-kiy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3Gx-1O-gnI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GFU-X0-3dX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FP9-Ug-lz2" kind="relationship" relationship="rootViewController" id="g2P-fC-8y7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdf-8r-TqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092.753623188406" y="118.52678571428571"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vhU-GZ-0uS"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">

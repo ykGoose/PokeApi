@@ -18,6 +18,8 @@
 		967922D02756606900BEA744 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922CF2756606900BEA744 /* NetworkManager.swift */; };
 		967922D22756640E00BEA744 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D12756640E00BEA744 /* CollectionView.swift */; };
 		967922D42756646300BEA744 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967922D32756646300BEA744 /* Cell.swift */; };
+		967D5605276C9A3C00990BA2 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D5604276C9A3C00990BA2 /* FavoriteTableViewController.swift */; };
+		96945EC9276D94670059BE40 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96945EC8276D94670059BE40 /* InfoViewController.swift */; };
 		D6C90AD382B9F9815847946E /* Pods_PokeApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89A0B0B0C41D4F1FACC880E3 /* Pods_PokeApi.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		967922CF2756606900BEA744 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		967922D12756640E00BEA744 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		967922D32756646300BEA744 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		967D5604276C9A3C00990BA2 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
+		96945EC8276D94670059BE40 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		BB1F974CF71BDB4C5CC50E9D /* Pods-PokeApi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeApi.release.xcconfig"; path = "Target Support Files/Pods-PokeApi/Pods-PokeApi.release.xcconfig"; sourceTree = "<group>"; };
 		DE076FD0494349484F479794 /* Pods-PokeApi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeApi.debug.xcconfig"; path = "Target Support Files/Pods-PokeApi/Pods-PokeApi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +76,7 @@
 		966B592C2758734400531161 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				967922CF2756606900BEA744 /* NetworkManager.swift */,
 				967922CD2756510300BEA744 /* Pokemon.swift */,
 				966B592A2758733A00531161 /* Pokedex.swift */,
 			);
@@ -102,9 +107,7 @@
 				967922CC27564ED200BEA744 /* Supporting Files */,
 				967922BE27564EB100BEA744 /* Main.storyboard */,
 				966B592C2758734400531161 /* Models */,
-				967922CF2756606900BEA744 /* NetworkManager.swift */,
-				967922D12756640E00BEA744 /* CollectionView.swift */,
-				967922D32756646300BEA744 /* Cell.swift */,
+				967D5603276C991300990BA2 /* View Controllers */,
 			);
 			path = PokeApi;
 			sourceTree = "<group>";
@@ -120,6 +123,17 @@
 				966B59282758609C00531161 /* extraction Func.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		967D5603276C991300990BA2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				967922D12756640E00BEA744 /* CollectionView.swift */,
+				967D5604276C9A3C00990BA2 /* FavoriteTableViewController.swift */,
+				96945EC8276D94670059BE40 /* InfoViewController.swift */,
+				967922D32756646300BEA744 /* Cell.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,9 +251,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96945EC9276D94670059BE40 /* InfoViewController.swift in Sources */,
 				967922B927564EB100BEA744 /* AppDelegate.swift in Sources */,
 				967922D02756606900BEA744 /* NetworkManager.swift in Sources */,
 				966B59292758609C00531161 /* extraction Func.swift in Sources */,
+				967D5605276C9A3C00990BA2 /* FavoriteTableViewController.swift in Sources */,
 				966B592B2758733A00531161 /* Pokedex.swift in Sources */,
 				967922D22756640E00BEA744 /* CollectionView.swift in Sources */,
 				967922BB27564EB100BEA744 /* SceneDelegate.swift in Sources */,
@@ -393,7 +409,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3B53AU5N2F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokeApi/Supporting Files/Info.plist";
@@ -422,7 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = 3B53AU5N2F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PokeApi/Supporting Files/Info.plist";

@@ -1,5 +1,3 @@
-
-
 import UIKit
 
 class PokemonCollectionViewController: UICollectionViewController {
@@ -7,11 +5,11 @@ class PokemonCollectionViewController: UICollectionViewController {
     // MARK: Properties
     private var pokemonList: Pokemon?
     private var searchedPokemons: [Species] = []
+    private var pokedexList: [Pokedex] = []
     private var searchBarIsEmpty: Bool {
         guard let text = navigationItem.searchController?.searchBar.text else { return false }
         return text.isEmpty
     }
-    private var pokedexList: [Pokedex] = []
     
     // MARK: Life Cycle Methods
     override func viewDidLoad() {
@@ -21,16 +19,14 @@ class PokemonCollectionViewController: UICollectionViewController {
         fetchingPokemon(url: URLsEnumeration.nationalApi.rawValue)
     }
     
-    /*
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using [segue destinationViewController].
-     // Pass the selected object to the new view controller.
+         let navigationVC = segue.destination as! UINavigationController
+         let infoVC = navigationVC.topViewController as! InfoViewController
+         guard let indexPath = collectionView.indexPathsForSelectedItems else {return}
+         infoVC.pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath[0].item] : searchedPokemons[indexPath[0].item]
      }
-     */
-    
+
     // MARK: - IB Actions
     @IBAction func regionChanging(_ sender: UIBarButtonItem) {
         showAlert()
@@ -40,50 +36,28 @@ class PokemonCollectionViewController: UICollectionViewController {
         searchBarIsEmpty ? pokemonList?.pokemonEntries.count ?? 1 : searchedPokemons.count
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
-        let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.row] : searchedPokemons[indexPath.row]
+        let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.item] : searchedPokemons[indexPath.item]
         cell.configure(with: pokemon)
         return cell
     }
-    
-    // MARK: UICollectionViewDelegate
-    /*
-     // Uncomment this method to specify if the specified item should be selected
-     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-     return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
-     }
-     */
-    
 }
+
 // MARK: - Extensions
 extension PokemonCollectionViewController {
     func fetchingPokedex() {
-        NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi1.rawValue) { pokedex in
+        NetworkManager.shared.fetchPokedexes(url: URLsEnumeration.pokedexListApi1.rawValue) { pokedex in
             self.pokedexList += pokedex
         }
-        NetworkManager.shared.fetchPokedex(url: URLsEnumeration.pokedexListApi2.rawValue) { pokedex in
+        NetworkManager.shared.fetchPokedexes(url: URLsEnumeration.pokedexListApi2.rawValue) { pokedex in
             self.pokedexList += pokedex
             print(self.pokedexList.count)
         }
     }
     func fetchingPokemon(url: String) {
-        NetworkManager.shared.fetchPokemon(url: url) { pokemon in
+        NetworkManager.shared.fetchPokemons(url: url) { pokemon in
             self.pokemonList = pokemon
             self.navigationItem.title = self.pokemonList?.name.capitalized.replacingOccurrences(of: "-", with: " ")
             self.collectionView.reloadData()

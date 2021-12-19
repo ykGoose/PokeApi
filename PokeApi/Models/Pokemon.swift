@@ -1,25 +1,18 @@
 
-struct Pokemon: Decodable {
-    
+struct Pokemon: Decodable {    
     let pokemonEntries: [Species]
     let name: String
-    
 }
 
 struct Species: Decodable {
-    
     let entryNumber: Int
     let pokemonSpecies: Name
-    
 }
 
 struct Name: Decodable {
     let name: String
-    let url: String
-    
+    let url: String     //image
 }
-
-
 
 enum URLsEnumeration: String {
     case image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" // no.svg

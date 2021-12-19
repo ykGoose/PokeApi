@@ -1,5 +1,6 @@
 import Foundation
 import Alamofire
+import SVGKit
 
 class NetworkManager {
     
@@ -8,8 +9,7 @@ class NetworkManager {
     private init() {}
     
     // MARK: Alamofire
-    
-    func fetchPokedex(url: String, complition: @escaping ([Pokedex]) -> Void) {
+    func fetchPokedexes(url: String, complition: @escaping ([Pokedex]) -> Void) {
         guard let url = URL(string: url) else { return }
         AF.request(url).validate().responseDecodable { (dataResponse: DataResponse<PokedexResult, AFError>) in
             
@@ -22,7 +22,7 @@ class NetworkManager {
         }
     }
     
-    func fetchPokemon(url: String, comlition: @escaping (Pokemon) -> Void) {
+    func fetchPokemons(url: String, comlition: @escaping (Pokemon) -> Void) {
         guard let url = URL(string: url) else { return }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -36,6 +36,26 @@ class NetworkManager {
             }
         }
     }
+    
+    func fetchImage (from pokemon: Species?, complition: @escaping (UIImage) -> Void) {
+        guard var pokeNumber = pokemon?.pokemonSpecies.url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "") else { return }
+        pokeNumber.removeLast()
+        print("\(pokemon?.pokemonSpecies.name ?? "noname") - \(pokemon?.entryNumber ?? 000)")
+        let imageUrl = "\(URLsEnumeration.image.rawValue)\(pokeNumber).svg"
+        
+        AF.request(imageUrl).response { response in
+            switch response.result {
+            case .success(let data):
+                guard let image = SVGKImage(data: data) else { return }
+                complition(image.uiImage)
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+//    fetch
     
     // MARK: Fetch Data
     

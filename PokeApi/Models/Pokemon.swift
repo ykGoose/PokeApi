@@ -1,3 +1,4 @@
+import Foundation
 
 struct Pokemon: Decodable {    
     let pokemonEntries: [Species]
@@ -12,6 +13,12 @@ struct Species: Decodable {
 struct Name: Decodable {
     let name: String
     let url: String     //image
+    var imageUrl: URL? {
+        var pokeNumber = url.replacingOccurrences(of: "https://pokeapi.co/api/v2/pokemon-species/", with: "")
+        pokeNumber.removeLast()
+        let imageUrl = URL(string: "\(URLsEnumeration.image.rawValue)\(pokeNumber).svg")
+        return imageUrl
+    }
 }
 
 enum URLsEnumeration: String {

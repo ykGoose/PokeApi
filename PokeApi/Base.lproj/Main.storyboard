@@ -31,7 +31,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="La0-uM-wxN">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="La0-uM-wxN" customClass="ImageView" customModule="PokeApi" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="98"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-FF-D6o">
@@ -65,7 +65,7 @@
                                     <outlet property="fetchingActivityIndicatorView" destination="gto-uV-sN7" id="cdh-P4-lu6"/>
                                     <outlet property="pokemonImageView" destination="La0-uM-wxN" id="PKe-hA-M63"/>
                                     <outlet property="pokemonNameLabel" destination="s3o-FF-D6o" id="esX-d9-6nV"/>
-                                    <segue destination="vFs-yK-kiy" kind="presentation" id="vhU-GZ-0uS"/>
+                                    <segue destination="vFs-yK-kiy" kind="presentation" identifier="info" id="vhU-GZ-0uS"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -78,7 +78,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="star.fill" catalog="system" id="ND2-lz-Jws">
                                 <connections>
-                                    <segue destination="a4s-cE-Dk9" kind="show" id="TMN-f9-HcO"/>
+                                    <segue destination="a4s-cE-Dk9" kind="show" identifier="favorite" id="TMN-f9-HcO"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="region" id="dvO-bB-F1j">
@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Gmz-5G-UG7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favoriteCell" id="Gmz-5G-UG7">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gmz-5G-UG7" id="A2N-gB-hCQ">
@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUD-mJ-JpI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUD-mJ-JpI" customClass="ImageView" customModule="PokeApi" customModuleProvider="target">
                                 <rect key="frame" x="16" y="72" width="382" height="382"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HUD-mJ-JpI" secondAttribute="height" multiplier="1:1" id="X12-L4-afm"/>

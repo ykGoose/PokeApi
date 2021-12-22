@@ -19,14 +19,16 @@ class PokemonCollectionViewController: UICollectionViewController {
         fetchingPokemon(url: URLsEnumeration.nationalApi.rawValue)
     }
     
-     // MARK: - Navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         let navigationVC = segue.destination as! UINavigationController
-         let infoVC = navigationVC.topViewController as! InfoViewController
-         guard let indexPath = collectionView.indexPathsForSelectedItems else {return}
-         infoVC.pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath[0].item] : searchedPokemons[indexPath[0].item]
-     }
-
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "info" {
+            let navigationVC = segue.destination as! UINavigationController
+            let infoVC = navigationVC.topViewController as! InfoViewController
+            guard let indexPath = collectionView.indexPathsForSelectedItems else {return}
+            infoVC.pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath[0].item] : searchedPokemons[indexPath[0].item]
+        }
+    }
+    
     // MARK: - IB Actions
     @IBAction func regionChanging(_ sender: UIBarButtonItem) {
         showAlert()
@@ -36,12 +38,16 @@ class PokemonCollectionViewController: UICollectionViewController {
         searchBarIsEmpty ? pokemonList?.pokemonEntries.count ?? 1 : searchedPokemons.count
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
         let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.item] : searchedPokemons[indexPath.item]
         cell.configure(with: pokemon)
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
+        cell.pokemonImageView = nil
     }
 }
 
@@ -119,13 +125,3 @@ extension PokemonCollectionViewController: UISearchResultsUpdating {
         collectionView.reloadData()
     }
 }
-
-//extension PokemonCollectionViewController {
-//    func titleColorConfiguration(color: UIColor) {
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = color
-//        navigationItem.standardAppearance = appearance
-//        navigationItem.scrollEdgeAppearance = appearance
-//    }
-//}

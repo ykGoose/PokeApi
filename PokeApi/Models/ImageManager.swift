@@ -1,7 +1,7 @@
 import UIKit
 import SVGKit
 
-class ImageView: UIImageView {
+extension UIImageView {
 
     func fetchImage(from url: URL?) {
         guard let url = url else { return }

@@ -1,9 +1,3 @@
-//
-//  SceneDelegate.swift
-//  PokeApi
-//
-//  Created by Владимир Падусов on 30.11.2021.
-//
 
 import UIKit
 

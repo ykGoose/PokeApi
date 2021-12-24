@@ -7,5 +7,4 @@ target 'PokeApi' do
 
 pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
 pod 'Alamofire', '~> 5.5'
-pod 'AlamofireImage', '~> 4.1'
 end

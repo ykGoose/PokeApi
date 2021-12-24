@@ -11,6 +11,7 @@ class PokemonCollectionViewController: UICollectionViewController {
         return text.isEmpty
     }
     
+    
     // MARK: Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +20,12 @@ class PokemonCollectionViewController: UICollectionViewController {
         fetchingPokemon(url: URLsEnumeration.nationalApi.rawValue)
     }
     
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "info" {
-            let navigationVC = segue.destination as! UINavigationController
-            let infoVC = navigationVC.topViewController as! InfoViewController
+           let navigationVC = segue.destination as! UINavigationController
+           let infoVC = navigationVC.topViewController as! InfoViewController
             guard let indexPath = collectionView.indexPathsForSelectedItems else {return}
             infoVC.pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath[0].item] : searchedPokemons[indexPath[0].item]
         }
@@ -35,12 +37,12 @@ class PokemonCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        searchBarIsEmpty ? pokemonList?.pokemonEntries.count ?? 1 : searchedPokemons.count
+        searchBarIsEmpty ? pokemonList?.pokemonEntries.count ?? 0 : searchedPokemons.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokeCell", for: indexPath) as! PokemonCollectionViewCell
-        let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.item] : searchedPokemons[indexPath.item]
+        guard let pokemon = searchBarIsEmpty ? pokemonList?.pokemonEntries[indexPath.item] : searchedPokemons[indexPath.item] else { return cell }
         cell.configure(with: pokemon)
         return cell
     }
@@ -125,3 +127,7 @@ extension PokemonCollectionViewController: UISearchResultsUpdating {
         collectionView.reloadData()
     }
 }
+
+    
+
+

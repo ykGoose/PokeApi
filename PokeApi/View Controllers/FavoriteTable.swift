@@ -2,25 +2,38 @@ import UIKit
 
 class FavoriteTableViewController: UITableViewController {
     
+    var favoritePokemon: [Species]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         controlView()
+        favoritePokemon = StorageManager.shared.fetchPokemon().sorted(by: {$0.entryNumber < $1.entryNumber})
     }
     
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        favoritePokemon.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath)
+        var configuration = cell.defaultContentConfiguration()
+        let image: UIImageView? = .init(image: nil)
+        image?.fetchImage(from: favoritePokemon[indexPath.row].pokemonSpecies.imageUrl)
+        configuration.image = image?.image
+        configuration.imageProperties.reservedLayoutSize.width = 60
+        configuration.text = favoritePokemon[indexPath.row].pokemonSpecies.name.capitalized
+        cell.contentConfiguration = configuration
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
+    }
 }
+
+
 
 extension FavoriteTableViewController {
     func controlView() {
@@ -33,6 +46,7 @@ extension FavoriteTableViewController {
     
     @objc func printer() {
         print("cat")
+        tableView.reloadData()
         refreshControl?.endRefreshing()
     }
 }

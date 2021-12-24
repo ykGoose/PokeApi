@@ -1,5 +1,4 @@
 import Alamofire
-import AlamofireImage
 import SVGKit
 import Foundation
 

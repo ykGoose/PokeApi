@@ -2,7 +2,7 @@ import UIKit
 
 class FavoriteTableViewController: UITableViewController {
     
-    var favoritePokemon: [Species]!
+    var favoritePokemon: [Pokemon]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -11,7 +11,6 @@ class FavoriteTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         favoritePokemon.count
     }
@@ -32,7 +31,6 @@ class FavoriteTableViewController: UITableViewController {
         60
     }
 }
-
 
 
 extension FavoriteTableViewController {

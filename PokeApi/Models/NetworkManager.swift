@@ -18,15 +18,16 @@ class NetworkManager {
                 completion(value.results)
             case .failure(let error):
                 print(error)
-        
+                
+            }
         }
     }
-    }
-    func fetchPokemons(url: String, comletion: @escaping (Pokemon) -> Void) {
+    
+    func fetchPokemons(url: String, comletion: @escaping (PokedexWithPokemons) -> Void) {
         guard let url = URL(string: url) else { return }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        AF.request(url).validate().responseDecodable(decoder: decoder) { (dataResponse: DataResponse<Pokemon, AFError>) in
+        AF.request(url).validate().responseDecodable(decoder: decoder) { (dataResponse: DataResponse<PokedexWithPokemons, AFError>) in
             switch dataResponse.result {
             case .success(let data):
                 comletion(data)
@@ -35,19 +36,5 @@ class NetworkManager {
             }
         }
     }
-    
-//    func fetchImage (from pokemon: Species?, completion: @escaping (UIImage) -> Void) {
-//        guard let pokeNumber = pokemon?.pokemonSpecies.imageUrl else { return }
-//        AF.request(pokeNumber).response { response in
-//            switch response.result {
-//            case .success(let data):
-//                guard response.response?.url == pokeNumber else { return }
-//                guard let image = SVGKImage(data: data) else { return }
-//                completion(image.uiImage)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
 }
 

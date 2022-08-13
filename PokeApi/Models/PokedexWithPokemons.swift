@@ -1,16 +1,16 @@
 import Foundation
 
-struct Pokemon: Codable, Equatable {
-    let pokemonEntries: [Species]
+struct PokedexWithPokemons: Codable, Equatable {
+    let pokemonEntries: [Pokemon]
     let name: String
 }
 
-struct Species: Codable, Equatable {
+struct Pokemon: Codable, Equatable {
     let entryNumber: Int
-    let pokemonSpecies: Name
+    let pokemonSpecies: NameAndURL
 }
 
-struct Name: Codable, Equatable {
+struct NameAndURL: Codable, Equatable {
     let name: String
     let url: String     //image
     var imageUrl: URL? {

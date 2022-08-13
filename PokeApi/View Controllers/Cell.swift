@@ -11,7 +11,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
 
     }
     
-    func configure(with pokemon: Species) {
+    func configure(with pokemon: Pokemon) {
         fetchingActivityIndicatorView.hidesWhenStopped = true
         fetchingActivityIndicatorView.startAnimating()
         let favorite = StorageManager.shared.fetchPokemon()
